@@ -70,7 +70,7 @@ if (DWGIO_ENABLE_CCACHE AND PROJECT_IS_TOP_LEVEL)
   endif()
 endif()
 
-add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:/utf-8;/Zc:__cplusplus>")
+add_compile_options("$<$<CXX_COMPILER_ID:MSVC>:/utf-8;/Zc:__cplusplus;/bigobj>")
 
 if (PROJECT_IS_TOP_LEVEL AND CMAKE_CXX_COMPILER_ID MATCHES "Clang|GNU")
   add_compile_options(

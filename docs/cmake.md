@@ -34,8 +34,8 @@
 | `DWGIO_ENABLE_FUZZ` | `OFF` | Builds the libFuzzer targets, LLVM Clang only |
 
 The warning flags and the `bin/` and `lib/` output directories apply only when
-dwgio is the top-level project. MSVC always compiles with `/utf-8` and
-`/Zc:__cplusplus`.
+dwgio is the top-level project. MSVC always compiles with `/utf-8`,
+`/Zc:__cplusplus` and `/bigobj`.
 
 ## Targets
 
