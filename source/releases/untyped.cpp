@@ -223,7 +223,7 @@ auto Expand(std::string_view layout) -> std::string
   std::string out;
   for (const std::string_view token : CollectTokens(layout))
   {
-    const auto *const fragment = std::ranges::find(Fragments, token, &Fragment::Name);
+    const auto fragment = std::ranges::find(Fragments, token, &Fragment::Name);
     out += fragment != Fragments.end() ? Expand(fragment->Layout) : std::string{token};
     out += ' ';
   }

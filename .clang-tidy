@@ -59,3 +59,4 @@ CheckOptions:
   readability-function-size.ParameterThreshold: 3
   readability-identifier-length.IgnoredParameterNames: "^([xyz]|at|by|in|is|to)$"
   readability-identifier-length.IgnoredVariableNames: "^(dx|dy|dz|[xyzXYZ]|at|by|in|is|to|Up)$"
+  readability-qualified-auto.AllowedTypes: "^std::ranges::borrowed_iterator_t"

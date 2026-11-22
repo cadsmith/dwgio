@@ -139,7 +139,7 @@ void Read(SummaryInfo &summary, const Tag &group)
 {
   if (const auto *text = std::get_if<std::string>(&group.Value))
   {
-    const auto *const coded = std::ranges::find(Texts, group.Code, &Coded::Code);
+    const auto coded = std::ranges::find(Texts, group.Code, &Coded::Code);
     if (coded != Texts.end())
     {
       summary.*coded->Member = *text;
@@ -158,7 +158,7 @@ void Read(SummaryInfo &summary, const Tag &group)
   }
   else if (const auto *real = std::get_if<double>(&group.Value))
   {
-    const auto *const dated = std::ranges::find(Dates, group.Code, &Dated::Code);
+    const auto dated = std::ranges::find(Dates, group.Code, &Dated::Code);
     if (dated != Dates.end())
     {
       SplitDate(*real, summary.*dated->Days, summary.*dated->Milliseconds);

@@ -144,8 +144,7 @@ auto EncodeByte(const Codepage &page, char32_t point) -> std::optional<char>
   {
     return static_cast<char>(point);
   }
-  const auto *const found =
-      std::ranges::find_if(*page.High, [point](char16_t one) -> bool { return char32_t{one} == point; });
+  const auto found = std::ranges::find_if(*page.High, [point](char16_t one) -> bool { return char32_t{one} == point; });
   if (found == page.High->end())
   {
     return std::nullopt;

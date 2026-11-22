@@ -120,7 +120,7 @@ constexpr int ObjectClass = 0x1F3;
 
 auto FindDeclared(std::string_view dxf) -> std::optional<Class>
 {
-  const auto *const known = std::ranges::find(Table, dxf, &Known::Dxf);
+  const auto known = std::ranges::find(Table, dxf, &Known::Dxf);
   if (known == Table.end())
   {
     return std::nullopt;
