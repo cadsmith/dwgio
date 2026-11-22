@@ -371,7 +371,7 @@ constexpr std::array<std::pair<std::string_view, Grammar>, 22> Grammars{{
 
 auto Walk(Visitor &visitor, std::string_view name) -> bool
 {
-  const auto *found = std::ranges::find(Grammars, name, &std::pair<std::string_view, Grammar>::first);
+  const auto found = std::ranges::find(Grammars, name, &std::pair<std::string_view, Grammar>::first);
   if (found == Grammars.end())
   {
     return false;

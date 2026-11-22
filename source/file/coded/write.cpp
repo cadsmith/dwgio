@@ -245,7 +245,7 @@ auto Map(std::span<const Paged::Section> sections, std::vector<Issue> &issues) -
   for (const Paged::Section &section : sections)
   {
     const std::string acdb = Paged::AcdbOf(section.Name);
-    const auto *known = std::ranges::find(Table, acdb, &Hashed::Acdb);
+    const auto known = std::ranges::find(Table, acdb, &Hashed::Acdb);
     if (known == Table.end())
     {
       issues.push_back(Issue{.Code = IssueCode::NotKept,

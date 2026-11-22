@@ -50,7 +50,7 @@ constexpr std::array Table{
 
 auto Find(std::string_view acdb) -> const Known *
 {
-  const auto *known = std::ranges::find(Table, acdb, &Known::Acdb);
+  const auto known = std::ranges::find(Table, acdb, &Known::Acdb);
   return known == Table.end() ? nullptr : &*known;
 }
 
@@ -67,7 +67,7 @@ auto SectionNameOf(std::string_view acdb) -> std::string
 
 auto AcdbOf(std::string_view name) -> std::string
 {
-  const auto *known = std::ranges::find(Table, name, &Known::Name);
+  const auto known = std::ranges::find(Table, name, &Known::Name);
   return std::string{known == Table.end() ? name : known->Acdb};
 }
 } // namespace DwgIO::File::Paged

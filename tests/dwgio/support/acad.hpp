@@ -78,7 +78,8 @@ inline void RunScript(const std::filesystem::path &script, const std::filesystem
   const std::string command = "python3 '" + (tools / "locked.py").string() + "' sh '" +
                               (tools / "console.sh").string() + "' '" + script.string() + "' '" + drawing.string() +
                               "' > /dev/null 2>&1";
-  std::system(command.c_str()); // NOLINT(concurrency-mt-unsafe,cert-env33-c): the test asks AutoCAD
+  [[maybe_unused]] const int status =
+      std::system(command.c_str()); // NOLINT(concurrency-mt-unsafe,cert-env33-c): the test asks AutoCAD
 }
 
 /**

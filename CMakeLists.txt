@@ -76,7 +76,12 @@ if (PROJECT_IS_TOP_LEVEL AND CMAKE_CXX_COMPILER_ID MATCHES "Clang|GNU")
   add_compile_options(
     -Wall -Wextra -Wpedantic -Wshadow
     -Wconversion -Wsign-conversion -Wold-style-cast
-    -Wnon-virtual-dtor -Woverloaded-virtual -Wnull-dereference
+    -Wnon-virtual-dtor -Woverloaded-virtual
+  )
+  # Optimized, GCC 13 reports null dereferences and uninitialized reads inside
+  # the inlined standard library that cannot happen.
+  add_compile_options(
+    "$<IF:$<AND:$<CXX_COMPILER_ID:GNU>,$<NOT:$<CONFIG:Debug>>>,-Wno-maybe-uninitialized,-Wnull-dereference>"
   )
 endif()
 

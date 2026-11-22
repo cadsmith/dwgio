@@ -62,9 +62,9 @@ constexpr std::array<char32_t, 2> Surrogates{0xd800, 0xdfff};
 
 auto FindForm(std::uint8_t lead) -> const Form *
 {
-  const auto *found =
+  const auto found =
       std::ranges::find_if(Forms, [lead](const Form &one) -> bool { return (lead & one.Mask) == one.Lead; });
-  return found == Forms.end() ? nullptr : found;
+  return found == Forms.end() ? nullptr : &*found;
 }
 
 auto Fits(char32_t point, const Form &shape) -> bool
@@ -99,7 +99,7 @@ auto First(std::string_view text) -> Step
 
 void Put(std::string &out, char32_t point)
 {
-  const auto *shape = std::ranges::find_if(Forms, [point](const Form &one) -> bool { return point < one.Below; });
+  const auto shape = std::ranges::find_if(Forms, [point](const Form &one) -> bool { return point < one.Below; });
   if (shape == Forms.end())
   {
     Put(out, Replacement);

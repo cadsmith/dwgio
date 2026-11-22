@@ -250,7 +250,7 @@ auto MakeScheme(const Codepage &page) -> Scheme
 
 auto FindScheme(int codepage) -> std::optional<Scheme>
 {
-  const auto *found =
+  const auto found =
       std::ranges::find_if(Numbers, [codepage](const Numbered &one) -> bool { return one.Number == codepage; });
   if (found == Numbers.end())
   {
