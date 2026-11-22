@@ -53,7 +53,7 @@ auto Intern(std::string_view text) -> const std::string *
     return &empty;
   }
   thread_local std::array<const std::string *, Remembered> recent{};
-  const auto *known =
+  const auto known =
       std::ranges::find_if(recent, [text](const std::string *one) -> bool { return one != nullptr && *one == text; });
   if (known != recent.end())
   {

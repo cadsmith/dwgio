@@ -24,7 +24,8 @@ jobs:
           - name: ubuntu gcc 13
             os: ubuntu-24.04
             cxx: g++-13
-            packages: g++-13
+            packages: g++-13 mold
+            ldflags: -fuse-ld=mold
           - name: ubuntu clang 19
             os: ubuntu-24.04
             cxx: clang++-19
@@ -37,8 +38,11 @@ jobs:
             cxx: cl
     env:
       CXX: ${{ matrix.cxx }}
+      LDFLAGS: ${{ matrix.ldflags }}
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
       - name: Install the compiler and ninja
         if: runner.os == 'Linux'
         run: |
@@ -63,7 +67,9 @@ jobs:
     env:
       CXX: clang++-19
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
       - run: |
           sudo apt-get update
           sudo apt-get install -y ninja-build clang-19
@@ -76,11 +82,13 @@ jobs:
     runs-on: ubuntu-24.04
     timeout-minutes: 10
     env:
-      CLANG_FORMAT: clang-format-19
+      CLANG_FORMAT: clang-format-23
     steps:
-      - uses: actions/checkout@v4
-      - run: |
-          sudo apt-get update
-          sudo apt-get install -y clang-format-19
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: ./.github/actions/llvm
+        with:
+          packages: clang-format-23
       - run: python3 -I tools/format/style.py --check
       - run: python3 -I tools/tests/names.py
