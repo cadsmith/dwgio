@@ -12,6 +12,7 @@ target_compile_definitions(dwgio_tests
   PRIVATE
     DWGIO_FIXTURES_DIR="${CMAKE_CURRENT_SOURCE_DIR}/fixtures"
     DWGIO_SOURCE_DIR="${PROJECT_SOURCE_DIR}"
+    DOCTEST_CONFIG_USE_STD_HEADERS
 )
 
 add_subdirectory(api)
