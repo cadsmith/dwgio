@@ -1,0 +1,17 @@
+target_sources(dwgio_objects
+  PRIVATE
+    convert.cpp
+    fields.cpp
+    grammar.cpp
+    parameters.cpp
+    read.cpp
+    reader.cpp
+    remake.cpp
+    sab/reader.cpp
+    sab/writer.cpp
+    sat/reader.cpp
+    sat/writer.cpp
+    subtype.cpp
+    write.cpp
+    writer.cpp
+)

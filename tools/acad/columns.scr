@@ -1,0 +1,26 @@
+FILEDIA 0
+OSMODE 0
+CMDECHO 0
+_.-MTEXT 0,0 _C _D 20 4 10 one two three four five six seven eight nine ten eleven twelve thirteen fourteen
+
+_.-MTEXT 0,-50 _C _S 50 3 4 12 alpha beta gamma delta epsilon zeta eta theta iota kappa lambda mu nu xi omicron pi rho sigma tau
+
+_.-MTEXT 0,-100 _C _D 30 5 20 short
+
+_.-MTEXT 0,-150 _C _S 40 2 6 15 fits
+
+_.-MTEXT 0,-200 60,-220 plain
+
+(entmake (list '(0 . "MTEXT") '(100 . "AcDbEntity") '(100 . "AcDbMText") '(10 0.0 -250.0 0.0) '(40 . 2.5) '(41 . 30.0) '(71 . 1) '(1 . "exact") '(73 . 2) '(44 . 1.5)))
+(entmake (list '(0 . "MTEXT") '(100 . "AcDbEntity") '(100 . "AcDbMText") '(10 0.0 -270.0 0.0) '(40 . 2.5) '(41 . 30.0) '(71 . 1) '(1 . "filled") '(90 . 1) '(63 . 3) '(45 . 1.5)))
+(entmake (list '(0 . "MTEXT") '(100 . "AcDbEntity") '(100 . "AcDbMText") '(10 0.0 -290.0 0.0) '(40 . 2.5) '(41 . 0.0) '(46 . 7.0) '(71 . 1) '(1 . "deep")))
+_.SAVEAS _2018 "columns-r2018.dwg"
+_.SAVEAS _2013 "columns-r2013.dwg"
+_.SAVEAS _2010 "columns-r2010.dwg"
+_.SAVEAS _2007 "columns-r2007.dwg"
+_.SAVEAS _2004 "columns-r2004.dwg"
+_.SAVEAS _2000 "columns-r2000.dwg"
+_.SAVEAS _R14 "columns-r14.dwg"
+_.DXFOUT "columns-r2018.dxf" _V _2018 16
+_.DXFOUT "columns-r2013.dxf" _V _2013 16
+_.QUIT _Y

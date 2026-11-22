@@ -1,0 +1,79 @@
+FILEDIA 0
+OSMODE 0
+CMDECHO 0
+(defun property (value flags) (append value (list (cons 176 flags))))
+(defun style (name kind properties) (append (list (cons 0 "VISUALSTYLE") (cons 100 "AcDbVisualStyle")
+  (cons 2 name) (cons 70 kind) (cons 177 3) (cons 291 0) (cons 70 58)) (apply 'append properties)))
+(setq styles (cdr (assoc -1 (dictsearch (namedobjdict) "ACAD_VISUALSTYLE"))))
+(dictadd styles "Probe" (entmakex (style "Probe" 8 (list
+  (property '((90 . 1)) 1) (property '((90 . 2)) 0) (property '((90 . 1)) 1) (property '((90 . 1)) 1)
+  (property '((40 . 0.25)) 1) (property '((40 . 12.5)) 1) (property '((62 . 3)) 1) (property '((90 . 1)) 1)
+  (property '((90 . 2)) 1) (property '((62 . 0)) 1) (property '((62 . 18) (420 . 1193046)) 1) (property '((90 . 1)) 1)
+  (property '((90 . 2)) 1) (property '((40 . 2.0)) 1) (property '((90 . 9)) 1) (property '((62 . 256)) 1)
+  (property '((40 . 0.5)) 1) (property '((90 . 1)) 1) (property '((90 . 6)) 1) (property '((90 . 2)) 1)
+  (property '((62 . 8) (420 . 8421505)) 1) (property '((90 . 3)) 1) (property '((90 . 1)) 1) (property '((90 . 1)) 1)
+  (property '((290 . 1)) 1) (property '((90 . 13)) 1) (property '((40 . 7.6)) 1) (property '((90 . 1)) 1)
+  (property '((290 . 1)) 1) (property '((290 . 0)) 1) (property '((290 . 1)) 0) (property '((290 . 1)) 1)
+  (property '((290 . 0)) 1) (property '((290 . 1)) 1) (property '((290 . 0)) 1) (property '((290 . 1)) 1)
+  (property '((290 . 0)) 1) (property '((90 . 77)) 1) (property '((40 . 0.125)) 1) (property '((40 . 2.0)) 1)
+  (property '((90 . 1)) 1) (property '((62 . 3)) 1) (property '((90 . 60)) 1) (property '((90 . 4)) 1)
+  (property '((62 . 257)) 1) (property '((290 . 1)) 2) (property '((90 . 51)) 1) (property '((90 . 52)) 1)
+  (property '((90 . 53)) 1) (property '((290 . 1)) 1) (property '((90 . 54)) 1)
+  (property '((62 . 18) (420 . 6636321)) 0) (property '((40 . 1.5)) 0) (property '((90 . 3)) 1)
+  (property '((1 . "probe.tif")) 1) (property '((290 . 1)) 1) (property '((40 . 1.25)) 1)
+  (property '((40 . 1.75)) 1)))))
+(dictadd styles "Probed" (entmakex (style "Probed" 2 (list
+  (property '((90 . 2)) 1) (property '((90 . 3)) 1) (property '((90 . 0)) 1) (property '((90 . 2)) 1)
+  (property '((40 . -0.75)) 1) (property '((40 . 30.0)) 1) (property '((62 . 7) (420 . 16777215)) 1)
+  (property '((90 . 0)) 1) (property '((90 . 0)) 1) (property '((62 . 7)) 1) (property '((62 . 257)) 1)
+  (property '((90 . 1)) 1) (property '((90 . 1)) 1) (property '((40 . 1.0)) 1) (property '((90 . 8)) 1)
+  (property '((62 . 257)) 1) (property '((40 . 1.0)) 1) (property '((90 . 1)) 1) (property '((90 . 6)) 1)
+  (property '((90 . 2)) 1) (property '((62 . 7)) 1) (property '((90 . 3)) 1) (property '((90 . 0)) 1)
+  (property '((90 . 0)) 1) (property '((290 . 0)) 1) (property '((90 . 13)) 1) (property '((40 . -2.5)) 1)
+  (property '((90 . 0)) 1) (property '((290 . 0)) 1) (property '((290 . 1)) 1) (property '((290 . 1)) 1)
+  (property '((290 . 0)) 1) (property '((290 . 0)) 1) (property '((290 . 0)) 1) (property '((290 . 0)) 1)
+  (property '((290 . 0)) 1) (property '((290 . 0)) 1) (property '((90 . 50)) 1) (property '((40 . 0.0)) 1)
+  (property '((40 . 1.0)) 1) (property '((90 . 0)) 1) (property '((62 . 0)) 1) (property '((90 . 50)) 1)
+  (property '((90 . 3)) 1) (property '((62 . 250)) 1) (property '((290 . 0)) 1) (property '((90 . 50)) 1)
+  (property '((90 . 50)) 1) (property '((90 . 50)) 1) (property '((290 . 0)) 1) (property '((90 . 50)) 1)
+  (property '((62 . 1) (420 . 16711680)) 0) (property '((40 . 1.0)) 0) (property '((90 . 2)) 1)
+  (property '((1 . "strokes_ogs.tif")) 1) (property '((290 . 0)) 1) (property '((40 . 1.0)) 1)
+  (property '((40 . 1.0)) 1)))))
+(defun spliced (changes groups / at out)
+  (setq at -1)
+  (foreach group groups
+    (setq at (1+ at))
+    (setq out (append out (if (assoc at changes) (cdr (assoc at changes)) (list group)))))
+  out)
+(setq detail (entget (cdr (assoc 350 (dictsearch (namedobjdict) "ACAD_DETAILVIEWSTYLE")))))
+(entmod (spliced (list
+  (list 10 '(290 . 1)) (list 11 '(300 . "Shown")) (list 12 '(90 . 5)) (list 16 '(90 . 7)) (list 19 '(62 . 1))
+  (list 20 '(40 . 5.5))
+  (list 22 '(62 . 18) '(420 . 1193046)) (list 23 '(40 . 6.5)) (list 24 '(300 . "IO")) (list 25 '(40 . 1.25))
+  (list 26 '(280 . 2)) (list 29 '(90 . 30)) (list 30 '(62 . 3)) (list 33 '(62 . 4)) (list 34 '(40 . 7.5))
+  (list 35 '(90 . 1)) (list 36 '(40 . 16.5)) (list 37 '(90 . 2)) (list 41 '(90 . 35)) (list 42 '(62 . 5))
+  (list 44 '(90 . 40)) (list 45 '(62 . 6)) (list 46 '(280 . 1))) detail))
+(setq section (entget (cdr (assoc 350 (dictsearch (namedobjdict) "ACAD_SECTIONVIEWSTYLE")))))
+(entmod (spliced (list
+  (list 11 '(300 . "Cut")) (list 12 '(90 . 6)) (list 16 '(90 . 103)) (list 19 '(62 . 1)) (list 20 '(40 . 5.25))
+  (list 23 '(62 . 18) '(420 . 1193046)) (list 24 '(40 . 6.25)) (list 25 '(300 . "I, O")) (list 26 '(40 . 10.5))
+  (list 27 '(90 . 1)) (list 28 '(40 . 3.5)) (list 29 '(90 . 2)) (list 32 '(90 . 30)) (list 33 '(62 . 2))
+  (list 35 '(90 . 35)) (list 36 '(62 . 3)) (list 37 '(40 . 5.5)) (list 38 '(40 . 2.75)) (list 39 '(40 . 4.5))
+  (list 42 '(62 . 4)) (list 43 '(40 . 7.25)) (list 44 '(90 . 3)) (list 45 '(40 . 17.5)) (list 46 '(90 . 4))
+  (list 49 '(62 . 5)) (list 50 '(62 . 6)) (list 51 '(300 . "ANSI32")) (list 52 '(40 . 2.0)) (list 53 '(90 . 5))
+  (list 54 '(290 . 1)) (list 55 '(290 . 1)) (list 56 '(90 . 2)) (list 57 '(40 . 0.5)) (list 58 '(40 . 1.0))
+  (list 59) (list 60) (list 61) (list 62)) section))
+_.SAVEAS _2018 "visualstyles-r2018.dwg"
+_.SAVEAS _2013 "visualstyles-r2013.dwg"
+_.SAVEAS _2010 "visualstyles-r2010.dwg"
+_.SAVEAS _2007 "visualstyles-r2007.dwg"
+_.SAVEAS _2004 "visualstyles-r2004.dwg"
+_.SAVEAS _2000 "visualstyles-r2000.dwg"
+_.SAVEAS _R14 "visualstyles-r14.dwg"
+_.DXFOUT "visualstyles-r2018.dxf" _V _2018 16
+_.DXFOUT "visualstyles-r2013.dxf" _V _2013 16
+_.DXFOUT "visualstyles-r2010.dxf" _V _2010 16
+_.DXFOUT "visualstyles-r2007.dxf" _V _2007 16
+_.DXFOUT "visualstyles-r2004.dxf" _V _2004 16
+_.DXFOUT "visualstyles-r2000.dxf" _V _2000 16
+_.QUIT _Y

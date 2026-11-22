@@ -1,0 +1,32 @@
+FILEDIA 0
+OSMODE 0
+CMDECHO 0
+(command "_.-TABLE" "3" "4" "0,0")
+(setq texts '("Parts" "Name" "Size" "Count" "Bolt" "M8" "12" "Nut" "M8" "24"))
+(defun fill (d / out n g)
+  (setq out '() n 0)
+  (while d
+    (setq g (car d) d (cdr d))
+    (if (and (= (car g) 301) (< n (length texts)))
+      (progn
+        (setq out (append (reverse (list g '(93 . 0) '(90 . 4) (cons 1 (nth n texts)) '(94 . 0) '(300 . "") (cons 302 (nth n texts)) '(304 . "ACVALUE_END"))) out))
+        (setq n (1+ n))
+        (while (/= (car (car d)) 304) (setq d (cdr d)))
+        (setq d (cdr d)))
+      (setq out (cons g out))))
+  (reverse out))
+(entmod (fill (entget (entlast))))
+_.SAVEAS _2018 "cells-r2018.dwg"
+_.SAVEAS _2013 "cells-r2013.dwg"
+_.SAVEAS _2010 "cells-r2010.dwg"
+_.SAVEAS _2007 "cells-r2007.dwg"
+_.SAVEAS _2004 "cells-r2004.dwg"
+_.SAVEAS _2000 "cells-r2000.dwg"
+_.SAVEAS _R14 "cells-r14.dwg"
+_.DXFOUT "cells-r2018.dxf" _V _2018 16
+_.DXFOUT "cells-r2013.dxf" _V _2013 16
+_.DXFOUT "cells-r2010.dxf" _V _2010 16
+_.DXFOUT "cells-r2007.dxf" _V _2007 16
+_.DXFOUT "cells-r2004.dxf" _V _2004 16
+_.DXFOUT "cells-r2000.dxf" _V _2000 16
+_.QUIT _Y

@@ -1,0 +1,32 @@
+target_sources(dwgio_tests
+  PRIVATE
+    common.cpp
+    datatable.cpp
+    dictionary.cpp
+    dictionaryvar.cpp
+    eed.cpp
+    group.cpp
+    image.cpp
+    items.cpp
+    later.cpp
+    layout.cpp
+    map.cpp
+    material.cpp
+    mleaderstyle.cpp
+    mlinestyle.cpp
+    newer.cpp
+    older.cpp
+    placeholder.cpp
+    plotsettings.cpp
+    read.cpp
+    scale.cpp
+    sortents.cpp
+    streams.cpp
+    tablecontent.cpp
+    tablestyle.cpp
+    types.cpp
+    visualstyle.cpp
+    walk.cpp
+    write.cpp
+    xrecord.cpp
+)

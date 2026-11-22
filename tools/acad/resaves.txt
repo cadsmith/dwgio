@@ -1,0 +1,20 @@
+kinds-r2000 2018 2013 2010 2007 2004
+kinds-r2004 2018 2013 2010 2007
+kinds-r2007 2018 2013 2010
+cells-r2004 2010 2000
+cells-r2007 2018
+cells-r2013 2018
+cells-r2018 2007 2004
+cells-r2004-bare 2018
+cells-r2007-bare 2018
+table-r2000 2007
+table-r2004 2018
+table-r2018 2000
+rowheights-r2004 2018
+rowheights-r2018 2004
+histories-r2004 2018 2007
+leaders-r14 2000
+leaders-r2007 2010
+columns-r14 2018
+attachments-r2007 2010
+vertical-r2007 2018

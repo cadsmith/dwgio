@@ -1,0 +1,65 @@
+FILEDIA 0
+OSMODE 0
+CMDECHO 0
+(command "_.-LINETYPE" "_L" "DASHED" "acadiso.lin" "")
+(command "_.CIRCLE" "600,600" "1")
+(command "_.-BLOCK" "Mine" "600,600" "_L" "")
+(command "_.LEADER" "0,0" "10,5" "" "Plain" "")
+(setvar "CECOLOR" "1")
+(command "_.LEADER" "0,20" "10,25" "" "Red" "")
+(setvar "CECOLOR" "BYBLOCK")
+(command "_.LEADER" "0,40" "10,45" "" "ByBlock" "")
+(setvar "CECOLOR" "BYLAYER")
+(setvar "DIMCLRD" 5)
+(setvar "DIMASZ" 4.0)
+(setvar "DIMGAP" 1.0)
+(setvar "DIMSCALE" 2.0)
+(command "_.LEADER" "0,60" "10,65" "" "Over" "")
+(command "_.-DIMSTYLE" "_R" "ISO-25")
+(setvar "DIMLDRBLK" "_DOT")
+(command "_.LEADER" "0,80" "10,85" "" "Dot" "")
+(command "_.-DIMSTYLE" "_R" "ISO-25")
+(setvar "DIMLDRBLK" "Mine")
+(command "_.LEADER" "0,100" "10,105" "" "Mine" "")
+(command "_.-DIMSTYLE" "_R" "ISO-25")
+(setvar "DIMCLRD" 2)
+(setvar "DIMASZ" 5.0)
+(setvar "DIMGAP" 2.0)
+(setvar "DIMSCALE" 3.0)
+(setvar "DIMLDRBLK" "_OBLIQUE")
+(command "_.-DIMSTYLE" "_S" "Big")
+(command "_.LEADER" "0,120" "10,125" "" "Big" "")
+(command "_.-DIMSTYLE" "_R" "ISO-25")
+(setvar "DIMCLRD" 256)
+(setvar "CECOLOR" "4")
+(command "_.LEADER" "0,140" "10,145" "" "Layered" "")
+(setvar "CECOLOR" "BYLAYER")
+(command "_.-DIMSTYLE" "_R" "Annotative")
+(command "_.LEADER" "0,160" "10,165" "" "Scaled" "")
+(command "_.-DIMSTYLE" "_R" "ISO-25")
+(command "_.LEADER" "0,180" "10,185" "" "" "_N")
+(setq dot (tblobjname "BLOCK" "_DOT"))
+(setq dashed (tblobjname "LTYPE" "DASHED"))
+(defun lined (d which pairs / out n g p inline)
+  (setq out '() n -1 inline nil)
+  (foreach g d
+    (setq p (assoc (car g) pairs))
+    (cond ((and (= (car g) 304) (= (cdr g) "LEADER_LINE{")) (setq n (1+ n) inline T) (setq out (cons g out)))
+          ((= (car g) 305) (setq inline nil) (setq out (cons g out)))
+          ((and inline (= n which) p) (setq out (cons p out)))
+          (T (setq out (cons g out)))))
+  (reverse out))
+(command "_.MLEADER" "50,0" "60,10" "two")
+(command "_.MLEADEREDIT" (entlast) "80,0" "")
+(setq e (entlast))
+(entmod (lined (entget e) 0 (list (cons 170 2) (cons 92 -1023410175) (cons 340 dashed) (cons 171 50) (cons 40 5.0) (cons 341 dot) (cons 93 63))))
+(entmod (lined (entget e) 1 (list (cons 92 -1023410173) (cons 93 2))))
+(command "_.MLEADER" "50,50" "60,60" "one")
+_.SAVEAS _2018 "leaders-r2018.dwg"
+_.SAVEAS _2013 "leaders-r2013.dwg"
+_.SAVEAS _2010 "leaders-r2010.dwg"
+_.SAVEAS _2007 "leaders-r2007.dwg"
+_.SAVEAS _2004 "leaders-r2004.dwg"
+_.SAVEAS _2000 "leaders-r2000.dwg"
+_.SAVEAS _R14 "leaders-r14.dwg"
+_.QUIT _Y

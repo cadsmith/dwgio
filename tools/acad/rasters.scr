@@ -1,0 +1,21 @@
+FILEDIA 0
+OSMODE 0
+CMDECHO 0
+(command "_.-IMAGE" "_A" "dot.png" "0,0" "10" "0")
+(command "_.-IMAGE" "_A" "dot.png" "20,0" "5" "30")
+(command "_.WIPEOUT" "40,0" "50,0" "50,10" "40,10" "")
+(command "_.WIPEOUT" "60,0" "70,0" "65,10" "")
+_.SAVEAS _2018 "rasters-r2018.dwg"
+_.SAVEAS _2013 "rasters-r2013.dwg"
+_.SAVEAS _2010 "rasters-r2010.dwg"
+_.SAVEAS _2007 "rasters-r2007.dwg"
+_.SAVEAS _2004 "rasters-r2004.dwg"
+_.SAVEAS _2000 "rasters-r2000.dwg"
+_.SAVEAS _R14 "rasters-r14.dwg"
+_.DXFOUT "rasters-r2018.dxf" _V _2018 16
+_.DXFOUT "rasters-r2013.dxf" _V _2013 16
+_.DXFOUT "rasters-r2010.dxf" _V _2010 16
+_.DXFOUT "rasters-r2007.dxf" _V _2007 16
+_.DXFOUT "rasters-r2004.dxf" _V _2004 16
+_.DXFOUT "rasters-r2000.dxf" _V _2000 16
+_.QUIT _Y

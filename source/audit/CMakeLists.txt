@@ -1,0 +1,12 @@
+target_sources(dwgio_objects
+  PRIVATE
+    audit.cpp
+    chains.cpp
+    common.cpp
+    extras.cpp
+    handles.cpp
+    names.cpp
+    pointers.cpp
+    references.cpp
+    roots.cpp
+)

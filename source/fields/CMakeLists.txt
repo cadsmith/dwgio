@@ -1,0 +1,11 @@
+target_sources(dwgio_objects
+  PRIVATE
+    codes.hpp
+    context.hpp
+    custom.hpp
+    field.hpp
+    layout.hpp
+    list.hpp
+    since.hpp
+    when.hpp
+)

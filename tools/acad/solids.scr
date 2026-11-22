@@ -1,0 +1,19 @@
+FILEDIA 0
+OSMODE 0
+CMDECHO 0
+(command "_.BOX" "0,0,0" "20,20,10")
+(setq b (entlast))
+(foreach p '((5 5) (5 15) (15 5) (15 15))
+  (command "_.CYLINDER" (list (car p) (cadr p) -1.0) "2" "12")
+  (command "_.SUBTRACT" b "" (entlast) ""))
+(command "_.CONE" "40,0,0" "4" "10")
+(command "_.TORUS" "60,0,0" "6" "1")
+(command "_.CYLINDER" "80,0,0" "3" "8")
+_.SAVEAS _2018 "solids-r2018.dwg"
+_.SAVEAS _2013 "solids-r2013.dwg"
+_.SAVEAS _2010 "solids-r2010.dwg"
+_.SAVEAS _2007 "solids-r2007.dwg"
+_.SAVEAS _2004 "solids-r2004.dwg"
+_.SAVEAS _2000 "solids-r2000.dwg"
+_.SAVEAS _R14 "solids-r14.dwg"
+_.QUIT _Y

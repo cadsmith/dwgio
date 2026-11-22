@@ -1,0 +1,27 @@
+/***********************************************************************************************************************
+ *  @file      dwgio/library.hpp
+ *  @brief     The version of dwgio itself, as its build gives it.
+ *  @copyright Copyright (c) 2026 EL JABIRI Tarik. Released under the MIT License.
+ **********************************************************************************************************************/
+
+#ifndef DWGIO_LIBRARY_HPP
+#define DWGIO_LIBRARY_HPP
+
+#include <string_view>
+
+// NOLINTBEGIN(cppcoreguidelines-macro-usage,cppcoreguidelines-macro-to-enum,modernize-macro-to-enum): #if tests them
+#define DWGIO_VERSION_MAJOR @PROJECT_VERSION_MAJOR@
+#define DWGIO_VERSION_MINOR @PROJECT_VERSION_MINOR@
+#define DWGIO_VERSION_PATCH @PROJECT_VERSION_PATCH@
+#define DWGIO_VERSION_STRING "@PROJECT_VERSION@"
+// NOLINTEND(cppcoreguidelines-macro-usage,cppcoreguidelines-macro-to-enum,modernize-macro-to-enum)
+
+namespace DwgIO
+{
+/**
+ *  Such as "0.1.0": DWGIO_VERSION_STRING, for code that would rather not use the macros.
+ */
+inline constexpr std::string_view LibraryVersion = DWGIO_VERSION_STRING;
+} // namespace DwgIO
+
+#endif /* DWGIO_LIBRARY_HPP */

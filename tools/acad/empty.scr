@@ -1,0 +1,11 @@
+FILEDIA 0
+CMDECHO 0
+_.SAVEAS _2018 "empty-r2018.dwg"
+_.SAVEAS _2013 "empty-r2013.dwg"
+_.SAVEAS _2010 "empty-r2010.dwg"
+_.SAVEAS _2007 "empty-r2007.dwg"
+_.SAVEAS _2004 "empty-r2004.dwg"
+_.SAVEAS _2000 "empty-r2000.dwg"
+_.SAVEAS _R14 "empty-r14.dwg"
+_.DXFOUT "empty-r2000.dxf" _V _2000 16
+_.QUIT _Y

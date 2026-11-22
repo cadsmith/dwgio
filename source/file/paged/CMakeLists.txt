@@ -1,0 +1,9 @@
+target_sources(dwgio_objects
+  PRIVATE
+    essential.cpp
+    head.cpp
+    layout.cpp
+    magic.cpp
+    names.cpp
+    pages.cpp
+)

@@ -1,0 +1,9 @@
+target_sources(dwgio_tests
+  PRIVATE
+    cross.cpp
+    objects.cpp
+    own.cpp
+    sections.cpp
+    stream.cpp
+    viewport.cpp
+)

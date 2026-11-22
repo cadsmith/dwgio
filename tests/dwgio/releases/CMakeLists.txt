@@ -1,0 +1,26 @@
+target_sources(dwgio_tests
+  PRIVATE
+    acis.cpp
+    appid.cpp
+    bodies.cpp
+    conversion.cpp
+    guid.cpp
+    history.cpp
+    leader.cpp
+    lookup.cpp
+    mtext.cpp
+    multileader.cpp
+    names.cpp
+    opaque.cpp
+    paged.cpp
+    palette.cpp
+    roundtrip.cpp
+    samples.cpp
+    scene.cpp
+    store.cpp
+    summary.cpp
+    untyped.cpp
+    visualstyle.cpp
+)
+
+add_subdirectory(table)

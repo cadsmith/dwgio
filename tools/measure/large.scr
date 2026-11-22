@@ -1,0 +1,27 @@
+FILEDIA 0
+OSMODE 0
+CMDECHO 0
+(setq i 0)
+(repeat 40000 (entmake (list (cons 0 "LINE") (cons 8 (strcat "L" (itoa (rem i 20)))) (cons 10 (list (* 2.0 (rem i 200)) (* 3.0 (/ i 200)) 0.0)) (cons 11 (list (+ 1.0 (* 2.0 (rem i 200))) (+ 2.0 (* 3.0 (/ i 200))) 0.0)))) (setq i (1+ i)))
+(setq i 0)
+(repeat 20000 (entmake (list (cons 0 "CIRCLE") (cons 10 (list (* 2.0 (rem i 200)) (+ 1000.0 (* 2.0 (/ i 200))) 0.0)) (cons 40 0.5))) (setq i (1+ i)))
+(setq i 0)
+(repeat 15000 (entmake (list (cons 0 "ARC") (cons 10 (list (* 2.0 (rem i 200)) (+ 2000.0 (* 2.0 (/ i 200))) 0.0)) (cons 40 0.7) (cons 50 0.3) (cons 51 2.5))) (setq i (1+ i)))
+(setq i 0)
+(repeat 15000 (entmake (list (cons 0 "TEXT") (cons 10 (list (* 4.0 (rem i 100)) (+ 3000.0 (* 2.0 (/ i 100))) 0.0)) (cons 40 0.4) (cons 1 (strcat "T" (itoa i))))) (setq i (1+ i)))
+(setq i 0)
+(repeat 5000 (entmake (list (cons 0 "LWPOLYLINE") (cons 100 "AcDbEntity") (cons 100 "AcDbPolyline") (cons 90 4) (cons 70 1) (cons 10 (list (* 3.0 (rem i 100)) (+ 4000.0 (* 3.0 (/ i 100))))) (cons 10 (list (+ 1.0 (* 3.0 (rem i 100))) (+ 4000.0 (* 3.0 (/ i 100))))) (cons 10 (list (+ 1.0 (* 3.0 (rem i 100))) (+ 4001.0 (* 3.0 (/ i 100))))) (cons 10 (list (* 3.0 (rem i 100)) (+ 4001.0 (* 3.0 (/ i 100))))))) (setq i (1+ i)))
+(entmake (list (cons 0 "BLOCK") (cons 2 "PART") (cons 70 0) (cons 10 (list 0.0 0.0 0.0))))
+(entmake (list (cons 0 "CIRCLE") (cons 10 (list 0.0 0.0 0.0)) (cons 40 0.4)))
+(entmake (list (cons 0 "LINE") (cons 10 (list -0.4 0.0 0.0)) (cons 11 (list 0.4 0.0 0.0))))
+(entmake (list (cons 0 "ENDBLK")))
+(setq i 0)
+(repeat 5000 (entmake (list (cons 0 "INSERT") (cons 2 "PART") (cons 10 (list (* 2.0 (rem i 100)) (+ 5000.0 (* 2.0 (/ i 100))) 0.0)))) (setq i (1+ i)))
+_.SAVEAS _2018 "large-r2018.dwg"
+_.SAVEAS _2013 "large-r2013.dwg"
+_.SAVEAS _2010 "large-r2010.dwg"
+_.SAVEAS _2007 "large-r2007.dwg"
+_.SAVEAS _2004 "large-r2004.dwg"
+_.SAVEAS _2000 "large-r2000.dwg"
+_.SAVEAS _R14 "large-r14.dwg"
+_.QUIT _Y

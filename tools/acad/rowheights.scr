@@ -1,0 +1,23 @@
+FILEDIA 0
+OSMODE 0
+CMDECHO 0
+(command "_.-TABLE" "3" "5" "0,0")
+(setq texts '("Title" "A" "B" "C" "1" "2" "3" "Wide" "x" "y" "z" "q" "r" "s" "t"))
+(defun fill (d / out n g h)
+  (setq out '() n 0 h 0)
+  (while d
+    (setq g (car d) d (cdr d))
+    (cond
+      ((and (= (car g) 141) (= h 3)) (setq out (cons '(141 . 20.0) out) h (1+ h)))
+      ((= (car g) 141) (setq out (cons g out) h (1+ h)))
+      ((and (= (car g) 301) (< n (length texts)))
+        (setq out (append (reverse (list g '(93 . 0) '(90 . 4) (cons 1 (nth n texts)) '(94 . 0) '(300 . "") (cons 302 (nth n texts)) '(304 . "ACVALUE_END"))) out))
+        (setq n (1+ n))
+        (while (/= (car (car d)) 304) (setq d (cdr d)))
+        (setq d (cdr d)))
+      (t (setq out (cons g out)))))
+  (reverse out))
+(entmod (fill (entget (entlast))))
+_.SAVEAS _2018 "rowheights-r2018.dwg"
+_.SAVEAS _2004 "rowheights-r2004.dwg"
+_.QUIT _Y

@@ -1,0 +1,38 @@
+FILEDIA 0
+OSMODE 0
+CMDECHO 0
+(defun matrix (code a b c d) (mapcar '(lambda (v) (cons code v))
+  (list a 0.0 0.0 0.0 0.0 b 0.0 0.0 0.0 0.0 c 0.0 0.0 0.0 0.0 d)))
+(setq materials (cdr (assoc -1 (dictsearch (namedobjdict) "ACAD_MATERIAL"))))
+(dictadd materials "Looks" (entmakex (append (list (cons 0 "MATERIAL") (cons 100 "AcDbMaterial")
+  (cons 1 "Looks") (cons 2 "Every channel set")
+  (cons 70 1) (cons 40 0.25) (cons 90 -1039064525)
+  (cons 71 1) (cons 41 0.5) (cons 91 -1035709082)
+  (cons 42 0.75) (cons 72 1) (cons 3 "dot.png") (cons 73 3) (cons 74 2) (cons 75 2))
+  (matrix 43 2.0 3.0 4.0 1.0)
+  (list (cons 44 0.625) (cons 76 1) (cons 45 0.375) (cons 92 -1032353639)
+  (cons 46 0.125) (cons 77 1) (cons 4 "specular.png") (cons 78 4) (cons 79 3) (cons 170 4))
+  (matrix 47 5.0 6.0 7.0 1.0)
+  (list (cons 48 0.2) (cons 171 0) (cons 172 1) (cons 173 1) (cons 174 1))
+  (matrix 49 8.0 9.0 10.0 1.0)
+  (list (cons 140 0.9) (cons 141 0.3) (cons 175 1) (cons 7 "opacity.png") (cons 176 2) (cons 177 2) (cons 178 2))
+  (matrix 142 11.0 12.0 13.0 1.0)
+  (list (cons 143 0.4) (cons 179 1) (cons 8 "bump.png") (cons 270 3) (cons 271 3) (cons 272 4))
+  (matrix 144 14.0 15.0 16.0 1.0)
+  (list (cons 145 1.33) (cons 146 0.6) (cons 273 1) (cons 9 "refraction.png") (cons 274 4) (cons 275 2) (cons 276 2))
+  (matrix 147 17.0 18.0 19.0 1.0)
+  (list (cons 148 0.15) (cons 149 0.35) (cons 468 0.45) (cons 93 2) (cons 94 21) (cons 282 1)))))
+_.SAVEAS _2018 "material-r2018.dwg"
+_.SAVEAS _2013 "material-r2013.dwg"
+_.SAVEAS _2010 "material-r2010.dwg"
+_.SAVEAS _2007 "material-r2007.dwg"
+_.SAVEAS _2004 "material-r2004.dwg"
+_.SAVEAS _2000 "material-r2000.dwg"
+_.SAVEAS _R14 "material-r14.dwg"
+_.DXFOUT "material-r2018.dxf" _V _2018 16
+_.DXFOUT "material-r2013.dxf" _V _2013 16
+_.DXFOUT "material-r2010.dxf" _V _2010 16
+_.DXFOUT "material-r2007.dxf" _V _2007 16
+_.DXFOUT "material-r2004.dxf" _V _2004 16
+_.DXFOUT "material-r2000.dxf" _V _2000 16
+_.QUIT _Y

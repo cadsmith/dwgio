@@ -1,0 +1,13 @@
+target_sources(dwgio_objects
+  PRIVATE
+    checksum.cpp
+    crc.cpp
+    crc32.cpp
+    crc64.cpp
+    lz.cpp
+    lz21.cpp
+    reader.cpp
+    reed.cpp
+    strings.cpp
+    writer.cpp
+)

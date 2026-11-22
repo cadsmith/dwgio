@@ -1,0 +1,7 @@
+* text=auto eol=lf
+*.dwg binary
+*.dxf -text
+*.png binary
+*.woff2 binary
+tests/fuzz/corpus/** binary
+tests/fuzz/found/** binary

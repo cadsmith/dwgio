@@ -1,0 +1,18 @@
+FILEDIA 0
+OSMODE 0
+CMDECHO 0
+(command "_.-TABLE" "3" "4" "0,0")
+_.SAVEAS _2018 "table-r2018.dwg"
+_.SAVEAS _2013 "table-r2013.dwg"
+_.SAVEAS _2010 "table-r2010.dwg"
+_.SAVEAS _2007 "table-r2007.dwg"
+_.SAVEAS _2004 "table-r2004.dwg"
+_.SAVEAS _2000 "table-r2000.dwg"
+_.SAVEAS _R14 "table-r14.dwg"
+_.DXFOUT "table-r2018.dxf" _V _2018 16
+_.DXFOUT "table-r2013.dxf" _V _2013 16
+_.DXFOUT "table-r2010.dxf" _V _2010 16
+_.DXFOUT "table-r2007.dxf" _V _2007 16
+_.DXFOUT "table-r2004.dxf" _V _2004 16
+_.DXFOUT "table-r2000.dxf" _V _2000 16
+_.QUIT _Y

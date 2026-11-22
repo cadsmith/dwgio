@@ -1,0 +1,12 @@
+FILEDIA 0
+CMDECHO 0
+(command "_.LINE" "0,0" "10,0" "")
+(entmod (append (entget (entlast)) '((440 . 33554534))))
+(command "_.LINE" "0,1" "10,1" "")
+(entmod (append (entget (entlast)) '((440 . 16777216))))
+(command "_.LINE" "0,2" "10,2" "")
+(entmod (append (entget (entlast)) '((420 . 1122867))))
+(command "_.LINE" "0,3" "10,3" "")
+(entmod (append (entget (entlast)) '((62 . 0))))
+_.SAVEAS _2018 "transparent-r2018.dwg"
+_.QUIT _Y

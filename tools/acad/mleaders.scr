@@ -1,0 +1,50 @@
+FILEDIA 0
+OSMODE 0
+CMDECHO 0
+(entmake '((0 . "BLOCK") (2 . "Bubble") (70 . 2) (10 0.0 0.0 0.0)))
+(entmake '((0 . "CIRCLE") (10 0.0 0.0 0.0) (40 . 5.0)))
+(entmake '((0 . "ATTDEF") (10 -2.0 -1.0 0.0) (40 . 2.5) (1 . "A") (3 . "Number") (2 . "NUM") (70 . 0)))
+(entmake '((0 . "ENDBLK")))
+(setq styles (cdr (assoc -1 (dictsearch (namedobjdict) "ACAD_MLEADERSTYLE"))))
+(setq standard (entget (cdr (assoc -1 (dictsearch styles "Standard")))))
+(defun restyle (pairs / out)
+  (setq out (vl-remove-if '(lambda (g) (member (car g) '(-1 5 330 102 360))) standard))
+  (foreach p pairs (setq out (subst p (assoc (car p) out) out)))
+  out)
+(setq bubble (cdr (assoc 330 (entget (tblobjname "BLOCK" "Bubble")))))
+(dictadd styles "Blocky" (entmakex (restyle (list (cons 170 1) (cons 343 bubble) (cons 3 "Block content")
+  (cons 177 1) (cons 141 0.5) (cons 47 2.0) (cons 49 2.0) (cons 140 2.0)))))
+(dictadd styles "Upright" (entmakex (restyle (list (cons 3 "Vertical text") (cons 271 1) (cons 273 10)
+  (cons 272 9) (cons 292 1) (cons 173 2) (cons 172 1) (cons 90 3) (cons 40 0.5) (cons 41 0.25) (cons 92 50)
+  (cons 175 2) (cons 176 2) (cons 297 1) (cons 300 "Default") (cons 45 3.0) (cons 46 1.5) (cons 142 2.0)
+  (cons 143 2.5) (cons 44 3.5) (cons 42 1.25) (cons 43 6.0) (cons 174 3) (cons 178 4) (cons 171 0)
+  (cons 295 1)))))
+(command "_.MLEADER" "0,0" "10,10" "two")
+(command "_.MLEADEREDIT" (entlast) "30,0" "")
+(setvar "CMLEADERSTYLE" "Blocky")
+(command "_.MLEADER" "50,0" "60,10" "7")
+(setvar "CMLEADERSTYLE" "Upright")
+(command "_.MLEADER" "100,0" "105,5" "110,10" "_Y" "up")
+(setq up (entlast))
+(command "_.DIMBREAK" up "_M" "101,1" "102,2")
+(command "_.DIMBREAK" up "_M" "106,6" "107,7")
+(setvar "CMLEADERSTYLE" "Standard")
+(command "_.MLEADER" "150,0" "160,10" "broken")
+(setq broken (entlast))
+(command "_.DIMBREAK" broken "_M" "151,1" "152,2")
+(command "_.DIMBREAK" broken "_M" "154,4" "155,5")
+(command "_.DIMBREAK" broken "_M" "162,10" "164,10")
+_.SAVEAS _2018 "mleaders-r2018.dwg"
+_.SAVEAS _2013 "mleaders-r2013.dwg"
+_.SAVEAS _2010 "mleaders-r2010.dwg"
+_.SAVEAS _2007 "mleaders-r2007.dwg"
+_.SAVEAS _2004 "mleaders-r2004.dwg"
+_.SAVEAS _2000 "mleaders-r2000.dwg"
+_.SAVEAS _R14 "mleaders-r14.dwg"
+_.DXFOUT "mleaders-r2018.dxf" _V _2018 16
+_.DXFOUT "mleaders-r2013.dxf" _V _2013 16
+_.DXFOUT "mleaders-r2010.dxf" _V _2010 16
+_.DXFOUT "mleaders-r2007.dxf" _V _2007 16
+_.DXFOUT "mleaders-r2004.dxf" _V _2004 16
+_.DXFOUT "mleaders-r2000.dxf" _V _2000 16
+_.QUIT _Y

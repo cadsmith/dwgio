@@ -1,0 +1,49 @@
+target_sources(dwgio_tests
+  PRIVATE
+    appearance.cpp
+    ascii.cpp
+    boxed.cpp
+    color.cpp
+    create.cpp
+    dimensions.cpp
+    drawing.cpp
+    edit.cpp
+    fuzz.cpp
+    handle.cpp
+    index.cpp
+    library.cpp
+    lineweight.cpp
+    load.cpp
+    main.cpp
+    many.cpp
+    object.cpp
+    symbol.cpp
+    tag.cpp
+    vector.cpp
+    version.cpp
+    view.cpp
+    xdata.cpp
+)
+
+add_subdirectory(acis)
+add_subdirectory(audit)
+add_subdirectory(bits)
+add_subdirectory(classes)
+add_subdirectory(edit)
+add_subdirectory(encoding)
+add_subdirectory(entities)
+add_subdirectory(fields)
+add_subdirectory(file)
+add_subdirectory(geometry)
+add_subdirectory(objects)
+add_subdirectory(releases)
+add_subdirectory(remove)
+add_subdirectory(save)
+add_subdirectory(store)
+add_subdirectory(tables)
+add_subdirectory(variables)
+
+target_include_directories(dwgio_tests
+  PRIVATE
+    ${CMAKE_CURRENT_SOURCE_DIR}
+)

@@ -1,0 +1,26 @@
+foreach(target load bits lz lz21 acis store cross recast)
+  add_executable(dwgio_fuzz_${target} ${target}.cpp)
+  target_link_libraries(dwgio_fuzz_${target} PRIVATE dwgio_internal)
+  target_compile_features(dwgio_fuzz_${target} PRIVATE cxx_std_23)
+  target_link_options(dwgio_fuzz_${target} PRIVATE -fsanitize=fuzzer)
+endforeach()
+
+# The cross corpus: each drawing of corpus/load behind the byte of a release to
+# save it to, R14 (7, taken modulo 7), R2007 (3) and R2018 (6).
+file(GLOB drawings ${CMAKE_CURRENT_SOURCE_DIR}/corpus/load/*.dwg)
+set_property(DIRECTORY APPEND PROPERTY CMAKE_CONFIGURE_DEPENDS ${drawings})
+set(cross ${PROJECT_BINARY_DIR}/corpus/cross)
+file(REMOVE_RECURSE ${cross})
+foreach(release r14:7 r2007:3 r2018:6)
+  string(REPLACE ":" ";" pair ${release})
+  list(GET pair 0 name)
+  list(GET pair 1 code)
+  string(ASCII ${code} byte)
+  file(WRITE ${cross}/.${name} "${byte}")
+  foreach(drawing ${drawings})
+    get_filename_component(stem ${drawing} NAME_WE)
+    execute_process(COMMAND ${CMAKE_COMMAND} -E cat ${cross}/.${name} ${drawing}
+                    OUTPUT_FILE ${cross}/${stem}-as-${name} COMMAND_ERROR_IS_FATAL ANY)
+  endforeach()
+  file(REMOVE ${cross}/.${name})
+endforeach()

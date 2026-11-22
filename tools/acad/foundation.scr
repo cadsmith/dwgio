@@ -1,0 +1,16 @@
+FILEDIA 0
+OSMODE 0
+CMDECHO 0
+(command "_.LINE" "0,0" "100,50" "")
+(command "_.CIRCLE" "50,50" "25")
+(command "_.ARC" "0,0" "10,10" "20,0")
+(command "_.PLINE" "0,0" "10,0" "10,10" "_C")
+_.SAVEAS _2018 "foundation-r2018.dwg"
+_.SAVEAS _2013 "foundation-r2013.dwg"
+_.SAVEAS _2010 "foundation-r2010.dwg"
+_.SAVEAS _2007 "foundation-r2007.dwg"
+_.SAVEAS _2004 "foundation-r2004.dwg"
+_.SAVEAS _2000 "foundation-r2000.dwg"
+_.SAVEAS _R14 "foundation-r14.dwg"
+_.DXFOUT "foundation-r2000.dxf" _V _2000 16
+_.QUIT _Y

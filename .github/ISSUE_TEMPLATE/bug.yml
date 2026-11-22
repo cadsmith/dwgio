@@ -1,0 +1,48 @@
+name: Bug report
+description: A drawing dwgio reads, writes or edits wrong, or a crash
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: >-
+        Report a crash or memory error that a crafted file can cause privately, as SECURITY.md explains, not
+        here.
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened
+      description: What you did, what dwgio did, and what you expected instead.
+    validations:
+      required: true
+  - type: textarea
+    id: output
+    attributes:
+      label: What dwgio reported
+      description: The `Failure` (its `What` and `Offset`) or the `Issues` of the load or save, and the code that ran.
+      render: text
+  - type: input
+    id: release
+    attributes:
+      label: Release of the drawing
+      description: R14, R2000, R2004, R2007, R2010, R2013 or R2018, and the release it was saved to, if any.
+    validations:
+      required: true
+  - type: input
+    id: writer
+    attributes:
+      label: Program that wrote the drawing
+      description: Such as AutoCAD 2026 for Windows, or another program and its version.
+  - type: textarea
+    id: drawing
+    attributes:
+      label: Drawing
+      description: >-
+        Attach the drawing, zipped, if you can share it, or a smaller drawing that shows the same problem. Remove
+        anything confidential first.
+  - type: input
+    id: environment
+    attributes:
+      label: dwgio version, compiler and platform
+      placeholder: 0.1.0, Clang 19, Ubuntu 24.04
+    validations:
+      required: true

@@ -1,0 +1,9 @@
+target_sources(dwgio_tests
+  PRIVATE
+    corners.cpp
+    essential.cpp
+    head.cpp
+    layout.cpp
+    pages.cpp
+    write.cpp
+)

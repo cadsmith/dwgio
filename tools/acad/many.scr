@@ -1,0 +1,15 @@
+FILEDIA 0
+OSMODE 0
+CMDECHO 0
+(setq i 0)
+(repeat 1200 (entmake (list (cons 0 "LINE") (cons 10 (list (* 2.0 (rem i 40)) (* 3.0 (/ i 40)) 0.0)) (cons 11 (list (+ 1.0 (* 2.0 (rem i 40))) (+ 2.0 (* 3.0 (/ i 40))) 0.0)))) (setq i (1+ i)))
+(setq i 0)
+(repeat 600 (entmake (list (cons 0 "CIRCLE") (cons 10 (list (* 2.0 (rem i 30)) (+ 100.0 (* 2.0 (/ i 30))) 0.0)) (cons 40 0.5))) (setq i (1+ i)))
+_.SAVEAS _2018 "many-r2018.dwg"
+_.SAVEAS _2013 "many-r2013.dwg"
+_.SAVEAS _2010 "many-r2010.dwg"
+_.SAVEAS _2007 "many-r2007.dwg"
+_.SAVEAS _2004 "many-r2004.dwg"
+_.SAVEAS _2000 "many-r2000.dwg"
+_.SAVEAS _R14 "many-r14.dwg"
+_.QUIT _Y

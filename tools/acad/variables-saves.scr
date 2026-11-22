@@ -1,0 +1,5 @@
+FILEDIA 0
+CMDECHO 0
+_.SAVEAS _2018 "variables-r2018.dwg"
+_.SAVEAS _2007 "variables-r2007.dwg"
+_.QUIT _Y

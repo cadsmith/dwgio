@@ -1,0 +1,42 @@
+FILEDIA 0
+OSMODE 0
+CMDECHO 0
+SOLIDHIST 1
+(command "_.BOX" "0,0,0" "20,20,10")
+(setq b (entlast))
+(command "_.CYLINDER" "10,10,-1" "4" "12")
+(command "_.SUBTRACT" b "" (entlast) "")
+(command "_.FILLET" "20,10,10" "2" "")
+(command "_.WEDGE" "40,0,0" "50,10,0" "8")
+(command "_.PYRAMID" "70,0,0" "5" "10")
+(command "_.SPHERE" "100,0,0" "5")
+(command "_.CONE" "130,0,0" "4" "10")
+(command "_.TORUS" "160,0,0" "6" "1")
+(command "_.CIRCLE" "0,50,0" "3")
+(command "_.EXTRUDE" (entlast) "" "10")
+(command "_.RECTANG" "30,50" "34,60")
+(command "_.REVOLVE" (entlast) "" "_Y" "")
+(command "_.CIRCLE" "60,50,0" "2")
+(setq c (entlast))
+(command "_.LINE" "60,50,0" "60,50,20" "")
+(command "_.SWEEP" c "" (entlast))
+(command "_.CIRCLE" "90,50,0" "4")
+(setq c1 (entlast))
+(command "_.CIRCLE" "90,50,10" "2")
+(command "_.LOFT" c1 (entlast) "" "")
+(command "_.BOX" "120,50,0" "130,60,10")
+(setq u (entlast))
+(command "_.SPHERE" "130,60,10" "4")
+(command "_.UNION" u (entlast) "")
+(command "_.BOX" "150,50,0" "160,60,10")
+(setq i (entlast))
+(command "_.SPHERE" "160,60,10" "6")
+(command "_.INTERSECT" i (entlast) "")
+_.SAVEAS _2018 "histories-r2018.dwg"
+_.SAVEAS _2013 "histories-r2013.dwg"
+_.SAVEAS _2010 "histories-r2010.dwg"
+_.SAVEAS _2007 "histories-r2007.dwg"
+_.SAVEAS _2004 "histories-r2004.dwg"
+_.SAVEAS _2000 "histories-r2000.dwg"
+_.SAVEAS _R14 "histories-r14.dwg"
+_.QUIT _Y

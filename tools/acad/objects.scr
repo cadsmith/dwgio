@@ -1,0 +1,47 @@
+FILEDIA 0
+OSMODE 0
+CMDECHO 0
+(command "_.-LINETYPE" "_L" "DASHED" "acadiso.lin" "")
+(command "_.-LAYER" "_N" "Walls" "")
+(command "_.LINE" "0,0" "10,0" "")
+(setq line1 (entlast))
+(command "_.CIRCLE" "20,0" "3")
+(setq circle1 (entlast))
+(command "_.LINE" "0,10" "10,10" "")
+(setq line2 (entlast))
+(command "_.LINE" "0,20" "10,20" "")
+(setq line3 (entlast))
+(setq root (namedobjdict))
+(setq dict (dictadd root "DWGIO_DICT" (entmakex (list (cons 0 "DICTIONARY") (cons 100 "AcDbDictionary") (cons 280 0) (cons 281 1)))))
+(setq space (cdr (assoc 330 (entget line1))))
+(setq zero (tblobjname "LAYER" "0"))
+(dictadd dict "FULL" (entmakex (list (cons 0 "XRECORD") (cons 100 "AcDbXrecord") (cons 280 1) (cons 1 "text one") (cons 2 "text two") (list 10 1.0 2.0 3.0) (cons 40 4.5) (cons 62 1) (cons 70 7) (cons 90 90000) (cons 280 2) (cons 290 1) (cons 300 "text three") (cons 310 "DEADBEEF") (cons 340 space) (cons 341 zero) (cons 38 1.5) (cons 39 2.5) (cons 370 25) (cons 410 "Model") (cons 420 16711680) (cons 440 7) (cons 460 0.5) (cons 470 "tag"))))
+(dictadd dict "EMPTY" (entmakex (list (cons 0 "XRECORD") (cons 100 "AcDbXrecord") (cons 280 1))))
+(setq inner (dictadd dict "INNER" (entmakex (list (cons 0 "DICTIONARY") (cons 100 "AcDbDictionary") (cons 280 0) (cons 281 1)))))
+(dictadd inner "ONE" (entmakex (list (cons 0 "XRECORD") (cons 100 "AcDbXrecord") (cons 280 1) (cons 1 "inner") (cons 40 1.5))))
+(setq hard (dictadd root "DWGIO_HARD" (entmakex (list (cons 0 "DICTIONARY") (cons 100 "AcDbDictionary") (cons 280 1) (cons 281 1)))))
+(dictadd hard "ITEM" (entmakex (list (cons 0 "XRECORD") (cons 100 "AcDbXrecord") (cons 280 1) (cons 70 1))))
+(command "_.-GROUP" "_C" "Pair" "A line and a circle" line1 circle1 "")
+(command "_.-GROUP" "_C" "*" "" line2 line3 "")
+(command "_.-SCALELISTEDIT" "_A" "1:7" "1:7" "_A" "3:1" "3:1" "_A" "1:250" "1:250" "_D" "1:7" "_E")
+(command "_.DRAWORDER" circle1 "" "_F")
+(command "_.DRAWORDER" line1 "" "_B")
+(setvar "DIMASSOC" 2)
+(command "_.-LAYOUT" "_N" "Draft")
+(command "_.-LAYOUT" "_R" "Draft" "Sheet")
+(command "_.-LAYOUT" "_S" "Sheet")
+(command "_.MVIEW" "10,10" "100,60")
+(command "_.MVIEW" "_P" "120,10" "180,10" "150,60" "_C")
+(command "_.MSPACE")
+(command "_.ZOOM" "_C" "5,5" "50")
+(command "_.PSPACE")
+(command "_.TILEMODE" "1")
+_.SAVEAS _2018 "objects-r2018.dwg"
+_.SAVEAS _2013 "objects-r2013.dwg"
+_.SAVEAS _2010 "objects-r2010.dwg"
+_.SAVEAS _2007 "objects-r2007.dwg"
+_.SAVEAS _2004 "objects-r2004.dwg"
+_.SAVEAS _2000 "objects-r2000.dwg"
+_.SAVEAS _R14 "objects-r14.dwg"
+_.DXFOUT "objects-r2000.dxf" _V _2000 16
+_.QUIT _Y

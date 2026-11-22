@@ -1,0 +1,9 @@
+target_sources(dwgio_tests
+  PRIVATE
+    head.cpp
+    layout.cpp
+    preview.cpp
+    second.cpp
+    section.cpp
+    sentinels.cpp
+)

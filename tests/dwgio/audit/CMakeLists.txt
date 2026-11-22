@@ -1,0 +1,14 @@
+target_sources(dwgio_tests
+  PRIVATE
+    chains.cpp
+    corners.cpp
+    extras.cpp
+    fixtures.cpp
+    handles.cpp
+    names.cpp
+    rasters.cpp
+    references.cpp
+    review.cpp
+    roots.cpp
+    tables.cpp
+)

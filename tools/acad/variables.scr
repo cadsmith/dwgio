@@ -1,0 +1,12 @@
+FILEDIA 0
+CMDECHO 0
+_.DXFOUT "variables-source.dxf" _V _2018 16
+(setq from (open "variables-source.dxf" "r") to (open "variables-r2018.dxf" "w") set nil)
+(while (setq line (read-line from))
+  (cond
+    ((= set "$REALWORLDSCALE") (if (= line "290") (write-line line to) (progn (write-line "     0" to) (setq set nil))))
+    ((= set "$SHADOWPLANELOCATION") (if (= line " 40") (write-line line to) (progn (write-line "-5.0" to) (setq set nil))))
+    (t (write-line line to) (if (member line '("$REALWORLDSCALE" "$SHADOWPLANELOCATION")) (setq set line)))))
+(close from)
+(close to)
+_.QUIT _Y

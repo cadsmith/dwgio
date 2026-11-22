@@ -1,0 +1,36 @@
+target_sources(dwgio_objects
+  PRIVATE
+    acis.cpp
+    appid.cpp
+    binding.cpp
+    bridge.cpp
+    chain.cpp
+    common.cpp
+    dimstyle.cpp
+    entities.cpp
+    guid.cpp
+    header.cpp
+    history.cpp
+    layouts.cpp
+    leader.cpp
+    lookup.cpp
+    mtext.cpp
+    multileader.cpp
+    names.cpp
+    object.cpp
+    omission.cpp
+    opaque.cpp
+    palette.cpp
+    passage.cpp
+    remake.cpp
+    roundtrip.cpp
+    scene.cpp
+    store.cpp
+    styles.cpp
+    summary.cpp
+    untyped.cpp
+    viewport.cpp
+    visualstyle.cpp
+)
+
+add_subdirectory(table)

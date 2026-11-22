@@ -1,0 +1,12 @@
+target_sources(dwgio_objects
+  PRIVATE
+    common.cpp
+    eed.cpp
+    items.cpp
+    map.cpp
+    read.cpp
+    storage.cpp
+    types.cpp
+    walk.cpp
+    write.cpp
+)

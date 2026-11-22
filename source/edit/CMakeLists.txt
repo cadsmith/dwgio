@@ -1,0 +1,13 @@
+target_sources(dwgio_objects
+  PRIVATE
+    add.cpp
+    cached.cpp
+    dependents.cpp
+    direct.cpp
+    editor.cpp
+    essential.cpp
+    remove.cpp
+    rename.cpp
+    unhook.cpp
+    usage.cpp
+)

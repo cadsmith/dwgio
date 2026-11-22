@@ -1,0 +1,49 @@
+FILEDIA 0
+OSMODE 0
+CMDECHO 0
+(setq styles (cdr (assoc -1 (dictsearch (namedobjdict) "ACAD_MLEADERSTYLE"))))
+(setq standard (entget (cdr (assoc -1 (dictsearch styles "Standard")))))
+(defun restyle (pairs / out)
+  (setq out (vl-remove-if '(lambda (g) (member (car g) '(-1 5 330 102 360))) standard))
+  (foreach p pairs (setq out (subst p (assoc (car p) out) out)))
+  out)
+(dictadd styles "Over" (entmakex (restyle (list (cons 3 "Over") (cons 271 1) (cons 273 10) (cons 272 9)
+  (cons 43 6.0)))))
+(dictadd styles "Under" (entmakex (restyle (list (cons 3 "Under") (cons 271 1) (cons 273 9) (cons 272 10)
+  (cons 43 4.0) (cons 42 2.0)))))
+(dictadd styles "Sided" (entmakex (restyle (list (cons 3 "Sided") (cons 174 2) (cons 178 6) (cons 43 5.0)))))
+(dictadd styles "Both" (entmakex (restyle (list (cons 3 "Both") (cons 271 1) (cons 273 10) (cons 272 10)
+  (cons 174 3) (cons 178 4)))))
+(dictadd styles "Flat" (entmakex (restyle (list (cons 3 "Flat") (cons 273 10) (cons 272 10)))))
+(defun lined (d which pairs / out n g p inline)
+  (setq out '() n -1 inline nil)
+  (foreach g d
+    (setq p (assoc (car g) pairs))
+    (cond ((and (= (car g) 304) (= (cdr g) "LEADER_LINE{")) (setq n (1+ n) inline T) (setq out (cons g out)))
+          ((= (car g) 305) (setq inline nil) (setq out (cons g out)))
+          ((and inline (= n which) p) (setq out (cons p out)))
+          (T (setq out (cons g out)))))
+  (reverse out))
+(setvar "CMLEADERSTYLE" "Over")
+(command "_.MLEADER" "0,0" "10,10" "over")
+(setvar "CMLEADERSTYLE" "Under")
+(command "_.MLEADER" "50,20" "60,10" "under")
+(command "_.MLEADEREDIT" (entlast) "70,0" "")
+(setvar "CMLEADERSTYLE" "Sided")
+(command "_.MLEADER" "100,0" "110,10" "sided")
+(setvar "CMLEADERSTYLE" "Both")
+(command "_.MLEADER" "160,30" "150,20" "both")
+(command "_.MLEADER" "200,0" "210,10" "lined")
+(entmod (lined (entget (entlast)) 0 (list (cons 92 -1023410175) (cons 93 2))))
+(setvar "CMLEADERSTYLE" "Flat")
+(command "_.MLEADER" "250,0" "260,10" "flat")
+(setvar "CMLEADERSTYLE" "Standard")
+(command "_.MLEADER" "150,0" "160,10" "plain")
+_.SAVEAS _2018 "attachments-r2018.dwg"
+_.SAVEAS _2013 "attachments-r2013.dwg"
+_.SAVEAS _2010 "attachments-r2010.dwg"
+_.SAVEAS _2007 "attachments-r2007.dwg"
+_.SAVEAS _2004 "attachments-r2004.dwg"
+_.SAVEAS _2000 "attachments-r2000.dwg"
+_.SAVEAS _R14 "attachments-r14.dwg"
+_.QUIT _Y

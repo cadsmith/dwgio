@@ -1,0 +1,86 @@
+name: ci
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+    name: ${{ matrix.name }}
+    runs-on: ${{ matrix.os }}
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+          - name: ubuntu gcc 13
+            os: ubuntu-24.04
+            cxx: g++-13
+            packages: g++-13
+          - name: ubuntu clang 19
+            os: ubuntu-24.04
+            cxx: clang++-19
+            packages: clang-19
+          - name: macos xcode 26
+            os: macos-26
+            cxx: clang++
+          - name: windows msvc
+            os: windows-2025
+            cxx: cl
+    env:
+      CXX: ${{ matrix.cxx }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Install the compiler and ninja
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ninja-build ${{ matrix.packages }}
+      - name: Install ninja
+        if: runner.os == 'macOS'
+        run: brew install ninja
+      - uses: ilammy/msvc-dev-cmd@v1.13.0
+        if: runner.os == 'Windows'
+      - run: cmake --preset debug
+      - run: cmake --build --preset debug
+      - run: ctest --preset debug -j 4
+      - run: cmake --preset release
+      - run: cmake --build --preset release
+      - run: ctest --preset release -j 4
+
+  shared:
+    name: ubuntu clang 19 shared
+    runs-on: ubuntu-24.04
+    timeout-minutes: 60
+    env:
+      CXX: clang++-19
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          sudo apt-get update
+          sudo apt-get install -y ninja-build clang-19
+      - run: cmake --preset debug -DBUILD_SHARED_LIBS=ON
+      - run: cmake --build --preset debug
+      - run: ctest --preset debug -j 4
+
+  format:
+    name: format and names
+    runs-on: ubuntu-24.04
+    timeout-minutes: 10
+    env:
+      CLANG_FORMAT: clang-format-19
+    steps:
+      - uses: actions/checkout@v4
+      - run: |
+          sudo apt-get update
+          sudo apt-get install -y clang-format-19
+      - run: python3 -I tools/format/style.py --check
+      - run: python3 -I tools/tests/names.py

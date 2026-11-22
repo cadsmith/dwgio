@@ -1,0 +1,27 @@
+FILEDIA 0
+OSMODE 0
+CMDECHO 0
+(command "_.ARC" "0,0" "10,10" "20,0")
+(command "_.DIMARC" (list (entlast) '(10.0 10.0 0.0)) "10,20")
+(command "_.CIRCLE" "50,0" "10")
+(command "_.DIMJOGGED" (list (entlast) '(60.0 0.0 0.0)) "70,20" "60,5" "58,3")
+(setq setups (cdr (assoc -1 (dictsearch (namedobjdict) "ACAD_PLOTSETTINGS"))))
+(dictadd setups "Check" (entmakex (list (cons 0 "PLOTSETTINGS") (cons 100 "AcDbPlotSettings") (cons 1 "Check")
+  (cons 2 "none_device") (cons 4 "") (cons 6 "") (cons 40 7.5) (cons 41 20.0) (cons 42 7.5) (cons 43 20.0)
+  (cons 44 297.0) (cons 45 210.0) (cons 46 0.0) (cons 47 0.0) (cons 48 0.0) (cons 49 0.0) (cons 140 0.0)
+  (cons 141 0.0) (cons 142 1.0) (cons 143 1.0) (cons 70 688) (cons 72 1) (cons 73 0) (cons 74 5) (cons 7 "")
+  (cons 75 16) (cons 147 1.0) (cons 76 0) (cons 77 2) (cons 78 300) (cons 148 0.0) (cons 149 0.0))))
+_.SAVEAS _2018 "dimensions-r2018.dwg"
+_.SAVEAS _2013 "dimensions-r2013.dwg"
+_.SAVEAS _2010 "dimensions-r2010.dwg"
+_.SAVEAS _2007 "dimensions-r2007.dwg"
+_.SAVEAS _2004 "dimensions-r2004.dwg"
+_.SAVEAS _2000 "dimensions-r2000.dwg"
+_.SAVEAS _R14 "dimensions-r14.dwg"
+_.DXFOUT "dimensions-r2018.dxf" _V _2018 16
+_.DXFOUT "dimensions-r2013.dxf" _V _2013 16
+_.DXFOUT "dimensions-r2010.dxf" _V _2010 16
+_.DXFOUT "dimensions-r2007.dxf" _V _2007 16
+_.DXFOUT "dimensions-r2004.dxf" _V _2004 16
+_.DXFOUT "dimensions-r2000.dxf" _V _2000 16
+_.QUIT _Y

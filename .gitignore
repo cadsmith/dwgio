@@ -1,0 +1,10 @@
+# folders
+build/
+.claude/
+*.trace
+
+# files
+.clangd
+.DS_Store
+*.profraw
+*.profdata

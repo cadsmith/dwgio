@@ -1,0 +1,15 @@
+target_sources(dwgio_tests
+  PRIVATE
+    appid.cpp
+    block.cpp
+    control.cpp
+    dimstyle.cpp
+    layer.cpp
+    ltype.cpp
+    older.cpp
+    style.cpp
+    ucs.cpp
+    view.cpp
+    viewportheader.cpp
+    vport.cpp
+)

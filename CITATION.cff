@@ -1,0 +1,18 @@
+cff-version: 1.2.0
+message: If you use dwgio in your work, please cite it as below.
+title: dwgio
+abstract: A C++23 library that reads and writes AutoCAD DWG files from R14 to R2018.
+type: software
+authors:
+  - family-names: El Jabiri
+    given-names: Tarik
+version: 0.1.0
+date-released: 2026-11-22
+license: MIT
+repository-code: https://github.com/cadsmith/dwgio
+url: https://github.com/cadsmith/dwgio
+keywords:
+  - DWG
+  - AutoCAD
+  - CAD
+  - C++23

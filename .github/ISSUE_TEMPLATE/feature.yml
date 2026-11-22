@@ -1,0 +1,21 @@
+name: Feature request
+description: A kind, a release or a function dwgio does not have
+labels: [enhancement]
+body:
+  - type: textarea
+    id: need
+    attributes:
+      label: What you need
+      description: What you want to do with a drawing, and what stops you today.
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Proposal
+      description: How it could look in the interface, if you have an idea.
+  - type: textarea
+    id: drawing
+    attributes:
+      label: Sample drawing
+      description: A drawing that holds the kind or data concerned, zipped, if you can share one.

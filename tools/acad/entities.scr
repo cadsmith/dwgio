@@ -1,0 +1,71 @@
+FILEDIA 0
+OSMODE 0
+CMDECHO 0
+ATTREQ 1
+ATTDIA 0
+(command "_.-LINETYPE" "_L" "DASHED,CENTER,HIDDEN" "acadiso.lin" "")
+(command "_.-LAYER" "_N" "Walls" "_C" "1" "Walls" "")
+(command "_.-STYLE" "Notes" "arial.ttf" "0" "0.8" "15" "_N" "_N")
+(regapp "DWGIO")
+(command "_.LINE" "0,0" "100,50" "")
+(setq line1 (entlast))
+(entmod (append (entget line1) (list (list -3 (list "DWGIO" (cons 1000 "note") (cons 1070 7) (cons 1040 2.5))))))
+(setvar "PDMODE" 3)
+(command "_.POINT" "10,10")
+(setvar "THICKNESS" 2)
+(command "_.CIRCLE" "50,50" "25")
+(setq circle1 (entlast))
+(setvar "THICKNESS" 0)
+(command "_.ARC" "0,0" "10,10" "20,0")
+(command "_.ELLIPSE" "_C" "30,30" "40,30" "5")
+(command "_.ELLIPSE" "_A" "_C" "60,30" "70,30" "5" "0" "90")
+(command "_.RAY" "0,100" "10,110" "")
+(command "_.XLINE" "0,120" "10,120" "")
+(command "_.3DFACE" "0,0,0" "10,0,0" "_I" "10,10,0" "0,10,0" "")
+(command "_.SOLID" "20,0" "30,0" "20,10" "30,10" "")
+(entmake (list (cons 0 "TRACE") (list 10 0.0 -10.0 0.0) (list 11 50.0 -10.0 0.0) (list 12 0.0 -8.0 0.0) (list 13 50.0 -8.0 0.0)))
+(command "_.LOAD" "ltypeshp.shx")
+(command "_.SHAPE" "CIRC1" "70,70" "2" "0")
+(command "_.TEXT" "0,150" "5" "0" "Plain text")
+(setvar "TEXTSTYLE" "Notes")
+(command "_.TEXT" "_J" "_MC" "50,150" "5" "30" "Centered")
+(setvar "TEXTSTYLE" "Standard")
+(command "_.TEXT" "0,160" "5" "0" "Mirror")
+(entmod (append (entget (entlast)) (list (cons 71 2))))
+(command "_.-MTEXT" "0,180" "_H" "5" "100,200" "First line" "Second line" "")
+(command "_.-ATTDEF" "" "NAME" "Name" "none" "500,500" "3" "0")
+(command "_.-ATTDEF" "_C" "" "SIZE" "10" "500,505" "3" "0")
+(command "_.LINE" "500,500" "510,500" "")
+(command "_.-BLOCK" "Tag" "500,500" "_W" "499,499" "530,510" "")
+(command "_.-INSERT" "Tag" "200,0" "1" "1" "0" "Alice")
+(command "_.CIRCLE" "600,600" "1")
+(command "_.-BLOCK" "Dot" "600,600" "_L" "")
+(command "_.MINSERT" "Dot" "300,0" "1" "1" "0" "3" "2" "15" "10")
+(setvar "CLAYER" "Walls")
+(setvar "CECOLOR" "1")
+(setvar "CELTYPE" "DASHED")
+(setvar "CELWEIGHT" 50)
+(command "_.LINE" "0,-50" "100,-50" "")
+(setvar "CELTYPE" "BYBLOCK")
+(command "_.CIRCLE" "0,-80" "5")
+(setvar "CELTYPE" "CONTINUOUS")
+(command "_.ARC" "20,-80" "25,-75" "30,-80")
+(setvar "CELTYPE" "BYLAYER")
+(setvar "CECOLOR" "BYLAYER")
+(setvar "CELWEIGHT" -1)
+(setvar "CLAYER" "0")
+(command "_.-GROUP" "_C" "Pair" "A line and a circle" line1 circle1 "")
+(command "_.UCS" "_X" "90")
+(command "_.CIRCLE" "0,0,-120" "4")
+(command "_.UCS" "_W")
+(command "_.LINE" "0,-100" "10,-100" "")
+(entmod (append (entget (entlast)) (list (cons 60 1))))
+_.SAVEAS _2018 "entities-r2018.dwg"
+_.SAVEAS _2013 "entities-r2013.dwg"
+_.SAVEAS _2010 "entities-r2010.dwg"
+_.SAVEAS _2007 "entities-r2007.dwg"
+_.SAVEAS _2004 "entities-r2004.dwg"
+_.SAVEAS _2000 "entities-r2000.dwg"
+_.SAVEAS _R14 "entities-r14.dwg"
+_.DXFOUT "entities-r2000.dxf" _V _2000 16
+_.QUIT _Y

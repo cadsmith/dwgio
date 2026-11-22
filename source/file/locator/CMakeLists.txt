@@ -1,0 +1,10 @@
+target_sources(dwgio_objects
+  PRIVATE
+    head.cpp
+    layout.cpp
+    preview.cpp
+    second.cpp
+    section.cpp
+    sentinels.cpp
+    write.cpp
+)
