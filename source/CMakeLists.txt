@@ -50,6 +50,9 @@ target_sources(dwgio
 
 target_compile_features(dwgio PUBLIC cxx_std_23)
 
+find_package(Threads REQUIRED)
+target_link_libraries(dwgio PRIVATE Threads::Threads)
+
 set_target_properties(dwgio PROPERTIES
   VERSION ${PROJECT_VERSION}
   SOVERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
@@ -87,6 +90,7 @@ else()
   add_library(dwgio_internal STATIC EXCLUDE_FROM_ALL
     $<TARGET_OBJECTS:dwgio_objects>)
   target_compile_definitions(dwgio_internal INTERFACE DWGIO_STATIC)
+  target_link_libraries(dwgio_internal INTERFACE Threads::Threads)
   target_include_directories(dwgio_internal
     INTERFACE
       ${PROJECT_SOURCE_DIR}/include
