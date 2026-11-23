@@ -5,9 +5,9 @@ dwgio is a CMake project that depends only on the standard library. Build it wit
 ## Requirements {#requirements}
 
 - CMake 3.28 or later.
-- A C++23 compiler whose standard library provides `std::expected`, `std::format`, `std::ranges::contains` and `std::from_chars` for `double`: GCC 13, Clang 19 with libstdc++ 13 or libc++ 20, Xcode 26 building for macOS 26, or MSVC 19.34 (Visual Studio 2022 17.4), or later.
+- A C++23 compiler whose standard library provides `std::expected`, `std::format`, `std::ranges::contains` and `std::from_chars` for `double`: GCC 13, Clang 19 with libstdc++ 13 or libc++ 20, Xcode 26 building for macOS 26, or MSVC 19.34 (Visual Studio 2022 17.4), or later. On FreeBSD 15, whose libc++ is 19, use GCC from the packages: `pkg install gcc15`, then build with `CXX=g++15`.
 
-The target requires C++23 of whatever links to it, so a project that uses dwgio compiles as C++23 too. No other library is needed.
+The target requires C++23 of whatever links to it, so a project that uses dwgio compiles as C++23 too. It needs no library beyond the system's threads.
 
 ## From the source tree {#subdirectory}
 

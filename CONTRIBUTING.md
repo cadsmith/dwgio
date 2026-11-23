@@ -26,7 +26,7 @@ AutoCAD is installed. [tools/README.md](tools/README.md) describes the scripts t
 
 ## Checks
 
-A change must pass the checks CI runs: the tests on Linux, macOS and Windows, static and shared, and the format and
+A change must pass the checks CI runs: the tests on Linux, macOS, Windows and FreeBSD, static and shared, and the format and
 test name checks.
 
 ```sh
