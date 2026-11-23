@@ -90,7 +90,7 @@ jobs:
           release: "15.1"
           mem: 12288
           usesh: true
-          prepare: pkg install -y cmake ninja python3
+          prepare: pkg install -y cmake ninja python3 git
           run: |
             c++ --version
             cmake --preset debug
