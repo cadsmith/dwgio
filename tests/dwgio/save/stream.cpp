@@ -40,6 +40,7 @@ TEST_CASE("save/stream: a drawing saves to a stream and to a file")
   REQUIRE(written);
   std::ifstream back{path, std::ios::binary};
   const std::string read{std::istreambuf_iterator<char>{back}, std::istreambuf_iterator<char>{}};
+  back.close();
   CHECK(read == StringOf(saved->Bytes));
   std::filesystem::remove(path);
   CHECK_FALSE(SaveFile(drawing, "/nonexistent/dir/none.dwg"));
