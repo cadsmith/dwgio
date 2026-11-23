@@ -56,6 +56,7 @@ target_link_libraries(dwgio PRIVATE Threads::Threads)
 set_target_properties(dwgio PROPERTIES
   VERSION ${PROJECT_VERSION}
   SOVERSION ${PROJECT_VERSION_MAJOR}.${PROJECT_VERSION_MINOR}
+  DEBUG_POSTFIX d
 )
 
 target_include_directories(dwgio_objects
