@@ -78,7 +78,7 @@ jobs:
       - run: ctest --preset debug -j 4
 
   freebsd:
-    name: freebsd 15.1 clang
+    name: freebsd 15.1 clang 21
     runs-on: ubuntu-24.04
     timeout-minutes: 120
     steps:
@@ -90,9 +90,12 @@ jobs:
           release: "15.1"
           mem: 12288
           usesh: true
-          prepare: pkg install -y cmake ninja python3 git
+          prepare: pkg install -y cmake ninja python3 git llvm21
           run: |
-            c++ --version
+            export CXX=clang++21
+            $CXX --version
+            echo '#include <version>' | $CXX -std=c++23 -x c++ -E -v - 2>&1 | grep -A3 'search starts here'
+            ls -d /usr/local/llvm21/include/c++/v1 || true
             cmake --preset debug
             cmake --build --preset debug
             ctest --preset debug -j 4
