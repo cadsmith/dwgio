@@ -77,6 +77,26 @@ jobs:
       - run: cmake --build --preset debug
       - run: ctest --preset debug -j 4
 
+  freebsd:
+    name: freebsd 15.1 clang
+    runs-on: ubuntu-24.04
+    timeout-minutes: 120
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - uses: vmactions/freebsd-vm@811efaaac0668df8bfb8308c3ec997b5ab50037b # v1.6.0
+        with:
+          release: "15.1"
+          mem: 12288
+          usesh: true
+          prepare: pkg install -y cmake ninja python3
+          run: |
+            c++ --version
+            cmake --preset debug
+            cmake --build --preset debug
+            ctest --preset debug -j 4
+
   format:
     name: format and names
     runs-on: ubuntu-24.04
