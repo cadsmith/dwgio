@@ -84,6 +84,17 @@ cmake --build app-build
 
 The package checks its version as `SameMajorVersion`: `find_package(dwgio 0.1 CONFIG REQUIRED)` accepts any 0.x from 0.1 on. The [first program](/guide/start/#first) makes a good `main.cpp` to try it with.
 
+## Prebuilt {#prebuilt}
+
+Each [release](https://github.com/cadsmith/dwgio/releases) carries dwgio installed for Linux x64 and arm64 (GCC 15 on Ubuntu 26.04), macOS (universal, 26 or later) and Windows x64 (MSVC, Release and Debug), with a `SHA256SUMS` file and a build provenance attestation for every archive. Unpack one and pass its directory as `CMAKE_PREFIX_PATH`, as above. To check where an archive was built:
+
+```sh
+gh attestation verify dwgio-<version>-linux-x64.tar.gz \
+  --repo cadsmith/dwgio \
+  --signer-workflow cadsmith/dwgio/.github/workflows/release.yml \
+  --source-ref refs/tags/v<version>
+```
+
 ## Static or shared {#shared}
 
 dwgio is a static library unless `BUILD_SHARED_LIBS` is on, CMake's own switch for every library a project adds. Pass it when you configure, or set it in the project that adds dwgio:
