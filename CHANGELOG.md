@@ -6,7 +6,7 @@ All notable changes to dwgio are documented in this file. The format is based on
 
 ## [Unreleased]
 
-## [0.1.0] - 2026-11-22
+## [0.1.0] - 2026-11-24
 
 The first release.
 
